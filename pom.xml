@@ -178,18 +178,25 @@
                     </webApp>
                 </configuration>
             </plugin>
+             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+        </plugin>
 		<!-- CODE COVERAGE -->
 	            <plugin>
                      <groupId>org.apache.maven.plugins</groupId>
                      <artifactId>maven-war-plugin</artifactId>
                      <version>3.2.2</version>
                     </plugin>
-
-        <plugin>
+                    
+                     <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.1.0</version>
         </plugin>
+
+       
  		    <plugin>
  		        <groupId>org.jacoco</groupId>
  		        <artifactId>jacoco-maven-plugin</artifactId>
