@@ -1,8 +1,8 @@
 pipeline{
     agent any
     tools{
-        maven "MAVEN3"
-        jdk "OracleJDK21"
+        maven 'MAVEN3'
+        jdk 'OracleJDK21'
     }
     environment {
         SNAP_REPO = 'vprofile-snapshot'
@@ -20,6 +20,12 @@ pipeline{
             steps {
                 sh 'mvn -U clean install'
                 sh 'mvn -s settings.xml -DskipTests install'
+            }
+            post{
+                success{
+                    echo('now archiving')
+                    archiveArtifacts(artifacts: '**/*.war')
+                }
             }
         }
     }
