@@ -1,6 +1,6 @@
-pipeline{
+pipeline {
     agent any
-    tools{
+    tools {
         maven 'MAVEN3'
         jdk 'OracleJDK21'
     }
@@ -40,13 +40,13 @@ pipeline{
                 sh 'mvn -s settings.xml  checkstyle:checkstyle'
             }
         }
-        stage('Sonar Anaysis'){
-            environment{
+        stage('Sonar Anaysis') {
+            environment {
                 scannerHome = tool "${SONARSCANNER}"
             }
-          steps {
-               withSonarQubeEnv("${SONARSERVER}") {
-                   sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
+            steps {
+                withSonarQubeEnv("${SONARSERVER}") {
+                    sh '''${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=vprofile \
                    -Dsonar.projectName=vprofile \
                    -Dsonar.projectVersion=1.0 \
                    -Dsonar.sources=src/ \
@@ -54,8 +54,9 @@ pipeline{
                    -Dsonar.junit.reportsPath=target/surefire-reports/ \
                    -Dsonar.jacoco.reportsPath=target/jacoco.exec \
                    -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml'''
-               }
+                }
 
-          }
+            }
         }
     }
+}
